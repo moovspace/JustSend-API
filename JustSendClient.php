@@ -1,49 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
-
-try{
-
-    $curl = new JustSendClient();
-    $curl->SetMethod("POST");
-    $curl->SetJson();
-
-    // Token
-    $curl->AddToken('API-KEY-HERE');
-    // Msg type
-    $curl->AddData("bulkVariant","ECO"); // ECO, PRO, FULL
-    $curl->AddData("doubleEncode", true);
-    // Mesasage
-    $curl->AddData("from", "HellGirl");
-    $curl->AddData("message", "Testowa wiadomość");
-
-    // Multiple recipients
-    $url = 'https://justsend.pl/api/rest/v2/bulk/send';
-    $curl->AddUrl($url);
-    $curl->AddData("name", "Powiadomienie");
-    $curl->AddData("groupId", 0);
-    $curl->AddData("sendDate", date(DATE_ATOM, time()));
-    
-    // Single
-    $curl->AddData("to", array("500111222"));
-    
-    // Multiple
-    // $curl->AddData("to", array("500111222","500222333"));
-
-    // // Single recipient
-    // $url = 'https://justsend.pl/api/rest/v2/message/send';
-    // $curl->AddUrl($url);
-    // $curl->AddData("message", "Testowa wiadomość");
-    // $curl->AddData("to", "500111222");
-
-    // Send
-    echo $curl->Send();
-
-}catch(Exception $e){
-    print_r($e);
-}
-
 /*
     JustSend.pl curl class
 */
