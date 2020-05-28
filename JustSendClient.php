@@ -192,6 +192,7 @@ class JustSendClient
         // Set token
         if(!empty($this->Token)){
             $this->Headers[] = 'App-Key: '.$this->Token;
+	    $this->Headers[] = 'Authorization: Bearer '.$this->Token;
         }
 
         // Add headers
