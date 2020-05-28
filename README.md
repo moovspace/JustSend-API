@@ -50,8 +50,30 @@ try{
 
 ### Jak wysłać wiadomość do jednego odbiorcy
 ```php
-// Single recipient
-$curl->AddUrl('https://justsend.pl/api/rest/v2/message/send');
-$curl->AddData("message", "Testowa wiadomość");
-$curl->AddData("to", "500100200");
+try
+{
+    $curl = new JustSendClient();
+    $curl->SetMethod("POST");
+    $curl->SetJson();
+
+    // Token
+    $curl->AddToken('API-KEY-HERE');
+    
+    // Lub dla pojedyńczego odbiorcy
+    $curl->AddUrl('https://justsend.pl/api/rest/v2/message/send');
+    
+    // Wiadomość    
+    $curl->AddData("bulkVariant","ECO"); // ECO, PRO, FULL
+    $curl->AddData("doubleEncode", true);
+    $curl->AddData("from", "HellGirl");
+    $curl->AddData("message", "Testowa wiadomość");
+    $curl->AddData("to", "500111222");
+    
+    // Send
+    echo $curl->Send();
+}
+catch(Exception $e)
+{
+    print_r($e);
+}
 ```    
