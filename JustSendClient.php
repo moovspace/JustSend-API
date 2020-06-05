@@ -142,8 +142,7 @@ class JustSendClient
         curl_setopt($this->Curl, CURLOPT_FOLLOWLOCATION, $this->FollowLocation);
         curl_setopt($this->Curl, CURLOPT_CONNECTTIMEOUT, $this->ConnectionTimeout);
         curl_setopt($this->Curl, CURLOPT_TIMEOUT, $this->Timeout);
-        curl_setopt($this->Curl, CURLOPT_SSLVERSION, 6);
-        curl_setopt($this->Curl, CURLOPT_SAFE_UPLOAD, false); // !!!! required as of PHP 5.6.0 for files !!!
+        curl_setopt($this->Curl, CURLOPT_SSLVERSION, 6);        
         curl_setopt($this->Curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows; U; Windows NT 6.1; en-GB; rv:1.9.2) Gecko/20100115 Firefox/3.6 (.NET CLR 3.5.30729)");
 
         // Proxy
@@ -170,8 +169,6 @@ class JustSendClient
         // Not GET
         if($this->Method != "GET"){
             curl_setopt($this->Curl, CURLOPT_POST, 1);
-
-            echo json_encode($this->Data);
 
             // Json headers
             if($this->Json == true){
