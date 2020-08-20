@@ -1,5 +1,5 @@
 # JustSend API
-JustSend.pl - Sms api php klient. Masowa wysyłka sms z Twojej strony internetowej. Sms marketing.
+Sms php api z justsend.
 
 ### Jak wysłać wiadomość do kilku odbiorców
 Klasa klienta w php do wysyłki wiadomości sms.
