@@ -1,5 +1,5 @@
 # JustSend API
-Sms php api z justsend.
+SMS PHP Api justsend.
 
 ### Jak wysłać wiadomość do kilku odbiorców
 Klasa klienta w php do wysyłki wiadomości sms.
