@@ -1,15 +1,39 @@
-# JustSend API
-SMS PHP Api justsend.
+# JustSend REST API PHP
+Justsend rest php api. How to send sms message from php rest api (single and multiple messages).
 
-### Jak wysłać wiadomość do kilku odbiorców
-Klasa klienta w php do wysyłki wiadomości sms.
+### Send sms to single recipient
+```php
+try
+{
+    $curl = new JustSendClient();
+    $curl->SetMethod("POST");
+    $curl->SetJson();
+
+    // Token
+    $curl->AddToken('API-KEY-HERE');
+    
+    // Single number
+    $curl->AddUrl('https://justsend.pl/api/rest/v2/message/send');
+    
+    // Mesage  
+    $curl->AddData("bulkVariant","ECO"); // ECO, PRO, FULL
+    $curl->AddData("doubleEncode", true);
+    $curl->AddData("from", "HellGirl");
+    $curl->AddData("message", "Testowa wiadomość");
+    $curl->AddData("to", "500111222");
+    
+    // Send
+    echo $curl->Send();
+}
+catch(Exception $e)
+{
+    print_r($e);
+}
+```   
+
+### Send sms to multiple recipients
 ```php
 <?php
-// Show errors
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
-
 // Import client
 require('JustSendClient.php');
 
@@ -50,32 +74,11 @@ try{
 }
 ```
 
-### Jak wysłać wiadomość do jednego odbiorcy
+### Display php errors
 ```php
-try
-{
-    $curl = new JustSendClient();
-    $curl->SetMethod("POST");
-    $curl->SetJson();
-
-    // Token
-    $curl->AddToken('API-KEY-HERE');
-    
-    // Lub dla pojedyńczego odbiorcy
-    $curl->AddUrl('https://justsend.pl/api/rest/v2/message/send');
-    
-    // Wiadomość    
-    $curl->AddData("bulkVariant","ECO"); // ECO, PRO, FULL
-    $curl->AddData("doubleEncode", true);
-    $curl->AddData("from", "HellGirl");
-    $curl->AddData("message", "Testowa wiadomość");
-    $curl->AddData("to", "500111222");
-    
-    // Send
-    echo $curl->Send();
-}
-catch(Exception $e)
-{
-    print_r($e);
-}
-```    
+<?php
+// Show errors
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
+```
